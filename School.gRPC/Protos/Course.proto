@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "School.gRPC.Protos";
+
+import "google/protobuf/empty.proto";
+
+service Course {
+	rpc GetCourse (CourseIDRequest) returns (CourseReply);
+	rpc GetCourses (google.protobuf.Empty) returns (Courses);
+	rpc AddCourse (CourseReply) returns(google.protobuf.Empty);	   
+	rpc DeleteCourse (CourseReply) returns(google.protobuf.Empty);
+}
+
+message CourseIDRequest {
+  int32 CourseID = 1;
+}
+
+// The response message containing the greetings.
+message CourseReply {
+  int32 CourseID = 1;
+  string CourseName = 2;
+}
+
+message Courses {
+	repeated CourseReply Courses = 1;
+}
